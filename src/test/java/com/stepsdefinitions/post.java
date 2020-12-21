@@ -60,9 +60,7 @@ public class post extends TestBase {
 	
 	@Then("I should see an alert of successful course creation")
 	public void i_should_see_an_alert_of_successful_course_creation() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-		base.waitElement(coursesAP.getCoursesAdminTitleLocator());
-		//base.waitElement(coursesAP.getSuccessLocator());
+		base.waitElement(coursesAP.getSuccessLocatorPost());
 	}
 
 }

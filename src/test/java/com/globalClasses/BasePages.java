@@ -54,7 +54,7 @@ public class BasePages {
 			driver.findElement(element).click();
 			Select item = new Select(driver.findElement(element));
 			if(element.equals(By.id("category"))) {
-				item.selectByIndex(((int)(Math.random()*(1-0)+1)+0));
+				item.selectByIndex(((int)(Math.random()*(2-0)+1)+0));
 			} else {
 				item.selectByIndex(((int)(Math.random()*(1-0)+1)+0));
 			}
@@ -128,8 +128,8 @@ public class BasePages {
 
 	public String getItem(By elements) throws Exception {
 		try {
-			String allFields = "";
-			String getItem = "";
+			String allFields = "", getItem = "";
+			int counter = 0;
 			clickPlusInfo(elements);
 			WebElement element = driver.findElement(elements);
 			List<WebElement> getItemByItem = element.findElements(By.cssSelector(" tbody >tr > td"));
@@ -137,12 +137,14 @@ public class BasePages {
 				if(g.getAttribute("class").contains("child")) {
 					List<WebElement> getHidenItemByItem = g.findElements(By.cssSelector("ul > li > span")); 
 					for(WebElement s : getHidenItemByItem) {
-						if(s.getAttribute("class").contains("dtr-data")) {
+						if(s.getAttribute("class").contains("dtr-data")&& counter!= 1) {
 							getItem = s.getText();
 							allFields = allFields + getItem;
 						}
+						counter = counter +1;
+						if(counter == 6) { counter = 0;}
 					}
-				}else {
+				} else {					
 					getItem = g.getText();
 					allFields = allFields + getItem;
 				}

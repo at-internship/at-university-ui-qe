@@ -6,7 +6,8 @@ public class CourseAdminPage {
 
 	private By coursesAdminTitleLocator = By.xpath("//h4[contains(string(),'Courses Administration')]");
 	private By addCourseButtonLocator = By.linkText("» Add New Course");
-	private By successLocator = By.xpath("//div/div[contains(string(),'Successfully')]");
+	private By successLocatorPost = By.xpath("//div/div[contains(string(),'Course added successfully')]");
+	private By successLocatorPut = By.xpath("//div/div[contains(string(),'Course Updated Successfully')]");
 	private By searchLocator = By.xpath("//input[@type='search']");
 	private By dataInTableLocator;
 	private By plusButtonLocator;
@@ -24,8 +25,11 @@ public class CourseAdminPage {
 		return addCourseButtonLocator;
 	}
 	
-	public By getSuccessLocator() {
-		return successLocator;
+	public By getSuccessLocatorPut() {
+		return successLocatorPut;
+	}
+	public By getSuccessLocatorPost() {
+		return successLocatorPost;
 	}
 	
 	public By getSearchLocator() {

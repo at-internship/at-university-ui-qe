@@ -24,12 +24,12 @@ public class update extends TestBase {
 	
 	@Then("The EditCourse form should be displayed")
 	public void the_EditCourse_form_should_be_displayed() throws Throwable {
-		base.waitElement(eC.getEditStoriesTitleLocator());
+		base.waitElement(eC.getEditCourseTitleLocator());
 		base.waitElement(eC.getSubmitLocator());
 	}
 	
-	@Given("I put a new title")
-	public void i_put_a_new_title() throws Throwable {
+	@Given("I put a new description")
+	public void i_put_a_new_description() throws Throwable {
 		base.sendKeys(eC.getNameLocator(), values.randomName());
 	}
 	
@@ -48,10 +48,12 @@ public class update extends TestBase {
 	public void i_should_see_the_changes_in_the_Mongo_DB() throws Throwable {
 		base.sendKeys(coursesAP.getSearchLocator(), id);
 		data2 = base.getText(coursesAP.getDataInTableLocator(id));
+		System.out.println(data1);
+		System.out.println(data2);
 		assert false == data1.equals(data2);
 	}
-	@Then("I should see an alert of successful story Update")
-	public void i_should_see_an_alert_of_successful_story_Update() throws Throwable {
-		base.waitElement(coursesAP.getSuccessLocator());
+	@Then("I should see an alert of successful Course Update")
+	public void i_should_see_an_alert_of_successful_Course_Update() throws Throwable {
+		base.waitElement(coursesAP.getSuccessLocatorPut());
 	}
 }

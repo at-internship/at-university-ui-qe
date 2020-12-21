@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 		"json:target/cucumber-reports/cucumber.json"}, 
 		features = "src/test/resources/",
 		glue = "com.stepsdefinitions",
-		//tags = {"@Get1"},
+		//tags = {"@Update1"},
 		monochrome = false)
 public class RunCakeTest {
 

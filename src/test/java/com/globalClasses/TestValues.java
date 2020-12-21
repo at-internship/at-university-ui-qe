@@ -11,7 +11,7 @@ public class TestValues {
 	}
 	
 	public String randomString() {
-		String string = faker.lorem().fixedString(99);
+		String string = faker.lorem().fixedString(20);
 		return string;
 	}
 

@@ -8,8 +8,8 @@ Feature: Update Courses using the Dashboard
 			
 		@Update1
 		Scenario: Update the name of the course
-			Given I put a new title
+			Given I put a new description
 			When I do click in the Update button
-			Then I should see an alert of successful story Update
+			Then I should see an alert of successful Course Update
 				And I should see the changes in the Stories Module
 				And I should see the changes in the Mongo DB

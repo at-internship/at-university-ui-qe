@@ -125,7 +125,7 @@ public class MongoDBConnection {
 
 	public boolean compareJsonString(String collection, String object) {
 		boolean bool = false;
-		String data = "", category = "", title = "", description = "", img = "";
+		String data = "", category = "", title = "";
 		String status = "";
 
 		MongoCollection<Document> coll = mDataBase.getCollection(collection);
@@ -141,24 +141,14 @@ public class MongoDBConnection {
 			if (mongo.has("title")) {
 				title = mongo.getString("title");
 			}
-			if (mongo.has("description")) {
-				description = mongo.getString("description");
-			}
-			if (mongo.has("img")) {
-				img = mongo.getString("img");
-			}
 			if (mongo.has("status")) {
 				status = mongo.get("status").toString();
 			} else {
 				status = "";
 			}
 
-			data = data + id + category + title + description + status;
+			data = data + id + category + title + status;
 		}
-		System.out.println("Data");
-		System.out.println(data);
-		System.out.println("Object");
-		System.out.println(object);
 		bool = compareAll(data, object);
 
 		return bool;
@@ -172,55 +162,6 @@ public class MongoDBConnection {
 		return bool;
 	}
 
-	public boolean compareAllJsonString(String collection, String object) {
-
-		boolean bool = false;
-		String data = "", name = "", priority = "", description = "", due_date = "", start_date = "";
-		int storyPoints = 0, progress = 0;
-		String status = "";
-
-		MongoCollection<Document> coll = mDataBase.getCollection(collection);
-		FindIterable<Document> findIterable = coll.find();
-
-		for (Document document : findIterable) {
-			JSONObject mongo = new JSONObject(document.toJson());
-			String id = mongo.getJSONObject("_id").get("$oid").toString();
-			String sprint_id = mongo.getJSONObject("sprint_id").get("$oid").toString();
-			String user_id = mongo.getJSONObject("user_id").get("$oid").toString();
-			if (mongo.has("name")) {
-				name = mongo.getString("name");
-			}
-			String[] priorityList = { "HIGH", "MEDIUM", "LOW" };
-			if (mongo.has("priority")) {
-				priority = priorityList[parseInt(mongo.get("priority").toString()) - 1];
-			}
-			if (mongo.has("story_points")) {
-				storyPoints = (int) mongo.get("story_points");
-			}
-			if (mongo.has("progress")) {
-				progress = (int) mongo.get("progress");
-			}
-
-			if (mongo.has("status")) {
-				status = mongo.get("status").toString();
-			} else {
-				status = "";
-			}
-
-			data = data + id + sprint_id + name + user_id + priority + storyPoints + status + progress + start_date
-					+ due_date;
-		}
-		bool = compareAllJS(data, object);
-
-		return bool;
-	}
-
-	public boolean compareAllJS(String mongoJson, String object) {
-		boolean bool = false;
-		if (mongoJson.equals(object)) {
-			bool = true;
-		}
-		return bool;
-	}
+	
 
 }

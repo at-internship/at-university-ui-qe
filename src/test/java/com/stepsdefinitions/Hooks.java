@@ -12,8 +12,8 @@ public class Hooks {
     public void setUp() {
         System.setProperty( "webdriver.chrome.driver", "./src/test/resources/chromedriver/chromedriver");
         driver = new ChromeDriver();
-        //driver.manage().window().setSize(new Dimension(1360, 768));
-        //driver.manage().window().maximize();
+        //driver.manage().window().setSize(new Dimension(960, 960));
+        driver.manage().window().maximize();
     }
     public static ChromeDriver getDriver() {
         return driver;
